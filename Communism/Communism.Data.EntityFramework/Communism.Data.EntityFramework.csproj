@@ -53,12 +53,22 @@
   <ItemGroup>
     <Compile Include="DataBase\CommunismContext.cs" />
     <Compile Include="DataBase\Configurations\UserConfiguration.cs" />
+    <Compile Include="DataBase\Configurations\UserDenunciationConfiguration.cs" />
     <Compile Include="DataBase\Configurations\UserRoleConfiguration.cs" />
     <Compile Include="DataBase\Entities\User.cs" />
+    <Compile Include="DataBase\Entities\UserDenunciation.cs" />
     <Compile Include="DataBase\Entities\UserRole.cs" />
     <Compile Include="DataBase\Migrations\202002121904184_Initialize database plus user and userRole tasbles.cs" />
     <Compile Include="DataBase\Migrations\202002121904184_Initialize database plus user and userRole tasbles.designer.cs">
       <DependentUpon>202002121904184_Initialize database plus user and userRole tasbles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Migrations\202002141623392_Initialize relation for User and UserRole table.cs" />
+    <Compile Include="DataBase\Migrations\202002141623392_Initialize relation for User and UserRole table.designer.cs">
+      <DependentUpon>202002141623392_Initialize relation for User and UserRole table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Migrations\202002151018039_Initialize UserDenunciation table.cs" />
+    <Compile Include="DataBase\Migrations\202002151018039_Initialize UserDenunciation table.designer.cs">
+      <DependentUpon>202002151018039_Initialize UserDenunciation table.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Migrations\Configuration.cs" />
     <Compile Include="GenericRepository.cs" />
@@ -73,6 +83,12 @@
   <ItemGroup>
     <EmbeddedResource Include="DataBase\Migrations\202002121904184_Initialize database plus user and userRole tasbles.resx">
       <DependentUpon>202002121904184_Initialize database plus user and userRole tasbles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202002141623392_Initialize relation for User and UserRole table.resx">
+      <DependentUpon>202002141623392_Initialize relation for User and UserRole table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202002151018039_Initialize UserDenunciation table.resx">
+      <DependentUpon>202002151018039_Initialize UserDenunciation table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

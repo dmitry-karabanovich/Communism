@@ -14,6 +14,11 @@ namespace Communism.Data.EntityFramework.DataBase.Configurations
             Property(x => x.UserName).IsRequired();
             Property(x => x.FirstName).IsRequired();
             Property(x => x.LastName).IsRequired();
+
+            HasMany(x => x.OwnDenunciations)
+                .WithRequired(x => x.Informer);
+            HasMany(x => x.DenunciationsToThisUser)
+                .WithRequired(x => x.DenunciationTo);
         }
     }
 }

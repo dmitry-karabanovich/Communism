@@ -12,7 +12,8 @@ namespace Communism.Data.EntityFramework.DataBase
         }
 
         public virtual DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<UserDenunciation> UserDenunciations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
         {

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 
-namespace Communism.Api.Dependency_Injection
+namespace Communism.Application.Core.DependencyInjection
 {
     public class WebApiServiceActivator : IHttpControllerActivator
     {

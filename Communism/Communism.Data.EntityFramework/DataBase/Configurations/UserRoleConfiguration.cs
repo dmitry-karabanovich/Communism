@@ -12,6 +12,9 @@ namespace Communism.Data.EntityFramework.DataBase.Configurations
             HasKey(x => x.Uid);
             Property(x => x.Uid).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Name).IsRequired();
+
+            HasMany(x => x.Users)
+                .WithRequired(x => x.Role);
         }
     }
 }

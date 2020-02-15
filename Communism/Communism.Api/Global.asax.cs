@@ -1,9 +1,9 @@
 ﻿using System.Web.Http;
-using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Communism.Api.Dependency_Injection;
+using Communism.Api.Configuration.Dependency_Injection;
+using Communism.Application.Core.DependencyInjection;
 
 namespace Communism.Api
 {
@@ -17,12 +17,7 @@ namespace Communism.Api
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new MvcControllerFactory());
-            IocContainer.Configure();
-
-            GlobalConfiguration.Configure(config =>
-            {
-                config.Services.Replace(typeof(IHttpControllerActivator), new WebApiServiceActivator());
-            });
+            IocContainer.Configure(ApiContainerRegistry.Configure);
         }
     }
 }

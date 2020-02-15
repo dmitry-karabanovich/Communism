@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Http.Dispatcher;
+using Communism.Application.Core.DependencyInjection;
 
 namespace Communism.Api
 {
@@ -19,6 +18,9 @@ namespace Communism.Api
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Services.Replace(typeof(IHttpControllerActivator), new WebApiServiceActivator());
         }
     }
 }

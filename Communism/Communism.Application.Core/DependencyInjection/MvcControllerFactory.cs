@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Communism.Api.Dependency_Injection
+namespace Communism.Application.Core.DependencyInjection
 {
     public class MvcControllerFactory : DefaultControllerFactory
     {
