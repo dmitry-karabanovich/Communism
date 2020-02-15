@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using AutoMapper;
-using Communism.Api.Models;
 using Communism.Domain.Contracts.Dtos;
 using Communism.Domain.Contracts.ServiceInterfaces;
 
@@ -21,10 +20,6 @@ namespace Communism.Api.Controllers
         // GET api/values
         public IEnumerable<UserDto> Get()
         {
-            var test2 = _mapper.Map<UserDto, UserModel>(new UserDto()
-            {
-                FirstName = "dadasd"
-            });
             return new[] { _userQueryService.GetUserByUserName("dkarabanovich") };
         }
 

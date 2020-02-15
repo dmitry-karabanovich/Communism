@@ -8,7 +8,12 @@ namespace Communism.Application.Core.AutoMapper.Profiles
     {
         public UserProfile()
         {
-            CreateMap<User, UserDto>();
+            CreateMap<User, UserDto>()
+                .ForMember(nameof(UserDto.Uid), x => x.MapFrom(y => y.Uid))
+                .ForMember(nameof(UserDto.UserName), x => x.MapFrom(y => y.UserName))
+                .ForMember(nameof(UserDto.FirstName), x => x.MapFrom(y => y.FirstName))
+                .ForMember(nameof(UserDto.LastName), x => x.MapFrom(y => y.LastName))
+                .ForMember(nameof(UserDto.UserRole), x => x.MapFrom(y => y.Role.Name));
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
+using AutoMapper;
 using Communism.Data.EntityFramework.DataBase;
 
 namespace Communism.Data.EntityFramework
@@ -10,49 +10,54 @@ namespace Communism.Data.EntityFramework
     public abstract class GenericRepository<T> where T : class
     {
         internal CommunismContext Context;
-        internal DbSet<T> DbSet;
+        private readonly DbSet<T> _dbSet;
+        internal IMapper Mapper;
 
-        protected GenericRepository(CommunismContext context)
+        protected GenericRepository(CommunismContext context, IMapper mapper)
         {
             Context = context;
-            DbSet = context.Set<T>();
+            Mapper = mapper;
+            _dbSet = context.Set<T>();
         }
 
-        public virtual void Add(T entity)
+        public virtual void Add<TDto>(TDto entityDto) where TDto : class
         {
-            DbSet.Add(entity);
+            var entity = Mapper.Map<TDto, T>(entityDto);
+            _dbSet.Add(entity);
         }
 
-        public virtual void Update(T entity)
+        public virtual void Update<TDto>(TDto entityDto) where TDto : class
         {
-            DbSet.Attach(entity);
+            var entity = Mapper.Map<TDto, T>(entityDto);
+            _dbSet.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
+        public virtual void Delete<TDto>(TDto entityDto) where TDto : class
         {
-            DbSet.Remove(entity);
+            var entity = Mapper.Map<TDto, T>(entityDto);
+            _dbSet.Remove(entity);
         }
 
-        public virtual void Delete(Expression<Func<T, bool>> where)
+//        public virtual void Delete(Expression<Func<T, bool>> where)
+//        {
+//            var entitiesToRemove = _dbSet.Where(where);
+//            _dbSet.RemoveRange(entitiesToRemove);
+//        }
+
+        public virtual TDto GetByUid<TDto>(Guid uid) where TDto : class
         {
-            var entitiesToRemove = DbSet.Where(where);
-            DbSet.RemoveRange(entitiesToRemove);
+            return Mapper.Map<T, TDto>(_dbSet.Find(uid));
         }
 
-        public virtual T GetByUid(Guid uid)
-        {
-            return DbSet.Find(uid);
-        }
+//        public virtual IEnumerable<T> Get(Expression<Func<T, bool>> where)
+//        {
+//            return _dbSet.Where(where).ToArray();
+//        }
 
-        public virtual IEnumerable<T> Get(Expression<Func<T, bool>> where)
+        public virtual IEnumerable<TDto> GetAll<TDto>() where TDto : class
         {
-            return DbSet.Where(where).ToArray();
-        }
-
-        public virtual IEnumerable<T> GetAll()
-        {
-            return DbSet.ToArray();
+            return Mapper.Map<IEnumerable<T>, IEnumerable<TDto>>(_dbSet.ToArray());
         }
     }
 }

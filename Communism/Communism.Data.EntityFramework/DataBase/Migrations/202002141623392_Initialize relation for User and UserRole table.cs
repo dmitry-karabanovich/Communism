@@ -7,15 +7,15 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.User", "RoleUid", c => c.Guid(nullable: false));
-            CreateIndex("dbo.User", "RoleUid");
-            AddForeignKey("dbo.User", "RoleUid", "dbo.UserRole", "Uid", cascadeDelete: true);
+            AddColumn("dbo.User", "Role_Uid", c => c.Guid(nullable: false));
+            CreateIndex("dbo.User", "Role_Uid");
+            AddForeignKey("dbo.User", "Role_Uid", "dbo.UserRole", "Uid", cascadeDelete: true);
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.User", "RoleUid", "dbo.UserRole");
-            DropIndex("dbo.User", new[] { "RoleUid" });
+            DropForeignKey("dbo.User", "Role_Uid", "dbo.UserRole");
+            DropIndex("dbo.User", new[] { "Role_Uid" });
             DropColumn("dbo.User", "Role_Uid");
         }
     }
