@@ -2,7 +2,6 @@
 using AutoMapper;
 using Communism.Data.EntityFramework.DataBase;
 using Communism.Data.EntityFramework.DataBase.Entities;
-using Communism.Domain.Contracts.Dtos;
 using Communism.Domain.Contracts.RepositoryInterfaces;
 
 namespace Communism.Data.EntityFramework.Repositories
@@ -13,9 +12,9 @@ namespace Communism.Data.EntityFramework.Repositories
         {
         }
 
-        public UserDto GetUserByUserName(string userName)
+        public TDto GetUserByUserName<TDto>(string userName) where TDto : class
         {
-            return Mapper.Map<User, UserDto>(Context.Users.Single(x => x.UserName == userName));
+            return Mapper.Map<User, TDto>(Context.Users.Single(x => x.UserName == userName));
         }
     }
 }

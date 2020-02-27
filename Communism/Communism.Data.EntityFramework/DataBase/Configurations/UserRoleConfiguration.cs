@@ -14,7 +14,8 @@ namespace Communism.Data.EntityFramework.DataBase.Configurations
             Property(x => x.Name).IsRequired();
 
             HasMany(x => x.Users)
-                .WithRequired(x => x.Role);
+                .WithRequired(x => x.Role)
+                .HasForeignKey(x => x.RoleUid);
         }
     }
 }

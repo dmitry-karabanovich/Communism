@@ -2,12 +2,12 @@
 
 namespace Communism.Domain.Contracts.Dtos
 {
-    public class UserDto
+    public class UserInfoDto
     {
         public Guid Uid { get; set; }
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Guid UserRoleUid { get; set; }
+        public string UserRole { get; set; }
     }
 }

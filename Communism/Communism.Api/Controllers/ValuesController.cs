@@ -20,7 +20,7 @@ namespace Communism.Api.Controllers
         // GET api/values
         public IEnumerable<UserDto> Get()
         {
-            return new[] { _userQueryService.GetUserByUserName("dkarabanovich") };
+            return new[] { _userQueryService.GetUserByUserName<UserDto>("dkarabanovich") };
         }
 
         // GET api/values/5

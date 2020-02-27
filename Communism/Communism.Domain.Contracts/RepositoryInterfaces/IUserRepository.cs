@@ -2,8 +2,8 @@
 
 namespace Communism.Domain.Contracts.RepositoryInterfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IGenericRepository
     {
-        UserDto GetUserByUserName(string userName);
+        TDto GetUserByUserName<TDto>(string userName) where TDto : class;
     }
 }

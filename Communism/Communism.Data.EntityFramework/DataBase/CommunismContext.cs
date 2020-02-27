@@ -19,6 +19,7 @@ namespace Communism.Data.EntityFramework.DataBase
         {
             dbModelBuilder.Configurations.Add(new UserConfiguration());
             dbModelBuilder.Configurations.Add(new UserRoleConfiguration());
+            dbModelBuilder.Configurations.Add(new UserDenunciationConfiguration());
         }
     }
 }

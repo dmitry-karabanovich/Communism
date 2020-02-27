@@ -7,11 +7,11 @@ using Communism.Data.EntityFramework.DataBase;
 
 namespace Communism.Data.EntityFramework
 {
-    public abstract class GenericRepository<T> where T : class
+    public class GenericRepository<T> where T : class
     {
-        internal CommunismContext Context;
         private readonly DbSet<T> _dbSet;
-        internal IMapper Mapper;
+        protected internal CommunismContext Context;
+        protected internal IMapper Mapper;
 
         protected GenericRepository(CommunismContext context, IMapper mapper)
         {
@@ -38,23 +38,12 @@ namespace Communism.Data.EntityFramework
             var entity = Mapper.Map<TDto, T>(entityDto);
             _dbSet.Remove(entity);
         }
-
-//        public virtual void Delete(Expression<Func<T, bool>> where)
-//        {
-//            var entitiesToRemove = _dbSet.Where(where);
-//            _dbSet.RemoveRange(entitiesToRemove);
-//        }
-
+        
         public virtual TDto GetByUid<TDto>(Guid uid) where TDto : class
         {
             return Mapper.Map<T, TDto>(_dbSet.Find(uid));
         }
-
-//        public virtual IEnumerable<T> Get(Expression<Func<T, bool>> where)
-//        {
-//            return _dbSet.Where(where).ToArray();
-//        }
-
+        
         public virtual IEnumerable<TDto> GetAll<TDto>() where TDto : class
         {
             return Mapper.Map<IEnumerable<T>, IEnumerable<TDto>>(_dbSet.ToArray());

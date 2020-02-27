@@ -4,14 +4,14 @@ using System.Linq.Expressions;
 
 namespace Communism.Domain.Contracts.RepositoryInterfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository
     {
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        void Delete(Expression<Func<T, bool>> where);
-        T GetByUid(Guid uid);
-        IEnumerable<T> Get(Expression<Func<T, bool>> where);
-        IEnumerable<T> GetAll();
+        void Add<T>(T entity) where T : class;
+        void Update<T>(T entity) where T : class;
+        void Delete<T>(T entity) where T : class;
+//        void Delete<T>(Expression<Func<T, bool>> where) where T : class;
+        T GetByUid<T>(Guid uid) where T : class;
+//        IEnumerable<T> Get<T>(Expression<Func<T, bool>> where) where T : class;
+        IEnumerable<T> GetAll<T>() where T : class;
     }
 }

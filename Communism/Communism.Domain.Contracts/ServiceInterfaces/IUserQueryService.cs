@@ -1,10 +1,12 @@
-﻿using Communism.Domain.Contracts.Dtos;
+﻿using System.Collections.Generic;
+using Communism.Domain.Contracts.Dtos;
 
 namespace Communism.Domain.Contracts.ServiceInterfaces
 {
     public interface IUserQueryService
     {
-        UserDto GetUserByUserName(string userName);
+        TDto GetUserByUserName<TDto>(string userName) where TDto : class;
+        IEnumerable<TDto> GetAllUsers<TDto>() where TDto : class;
 
     }
 }
